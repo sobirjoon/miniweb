@@ -1,9 +1,10 @@
-# We shall use the NGINX webserver and Light weight Linux Alpine
+# Use NGINX running on Alpine
 FROM nginx:1.23.3-alpine
-#configuration for the NGINX webserver
+
+# Copy your custom NGINX config
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
-#contents copy all the web files to the IMAGE
+# Copy all your web files
 COPY ./*.html /usr/share/nginx/html/
 COPY ./css /usr/share/nginx/html/css
 COPY ./assets /usr/share/nginx/html/assets
