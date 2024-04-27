@@ -1,11 +1,10 @@
+# We shall use the NGINX webserver and Light weight Linux Alpine
 FROM nginx:1.23.3-alpine
+#configuration for the NGINX webserver
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
-# Copy the NGINX template configuration and other necessary files
-COPY nginx.conf.template /etc/nginx/nginx.conf.template
+#contents copy all the web files to the IMAGE
 COPY ./*.html /usr/share/nginx/html/
 COPY ./css /usr/share/nginx/html/css
 COPY ./assets /usr/share/nginx/html/assets
 COPY ./js /usr/share/nginx/html/js
-
-# Replace the PORT environment variable at runtime and start NGINX
-CMD ["/bin/sh", "-c", "envsubst '$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
